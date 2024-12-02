@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -12,11 +12,10 @@ const celebrationEmojis = ["🎉", "🎊", "🥳", "👏", "🙌"]
 export default function Results() {
     const searchParams = useSearchParams()
     const score = searchParams.get('score')
-    const totalQuestions = 2 // Update this when you add more questions
+    const totalQuestions = 2
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-yellow-200 to-yellow-500 overflow-hidden relative p-4">
-            {/* Celebration emojis */}
+        <div className="h-screen bg-gradient-to-r from-yellow-200 to-yellow-500 overflow-hidden relative p-4">
             {celebrationEmojis.map((emoji, index) => (
                 <motion.div
                     key={index}
@@ -33,7 +32,6 @@ export default function Results() {
                 </motion.div>
             ))}
 
-            {/* Character sticker */}
             <motion.div
                 className="absolute bottom-10 right-10 hidden md:block"
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -42,7 +40,7 @@ export default function Results() {
                 <Image src="/placeholder.svg?text=Sbou3i+Thumbs+Up" width={150} height={150} alt="Sbou3i Thumbs Up" />
             </motion.div>
 
-            <div className="flex justify-center items-center min-h-screen">
+            <div className="flex justify-center items-center h-full">
                 <motion.div
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
@@ -50,12 +48,12 @@ export default function Results() {
                 >
                     <Card className="w-full max-w-md overflow-hidden">
                         <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
-                            <Image src="/placeholder.svg?height=300&width=500&text=Mabrouk!" width={500} height={300} alt="Quiz Results" className="w-full" />
+                            <Image src="/placeholder.svg?height=300&width=500&text=Mabrouk!" width={500} height={300} alt="نتائج الكويز" className="w-full" />
                         </motion.div>
                         <CardHeader>
                             <CardTitle>
-                                <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }} className="text-2xl md:text-3xl text-center">
-                                    Natèyej el Quiz
+                                <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }} className="text-2xl md:text-3xl text-center arabic-text">
+                                    نتائج الكويز
                                 </motion.div>
                             </CardTitle>
                         </CardHeader>
@@ -64,25 +62,25 @@ export default function Results() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className="text-xl md:text-2xl text-center font-bold mb-4"
+                                className="text-xl md:text-2xl text-center font-bold mb-4 arabic-text"
                             >
-                                Natijtek: {score} mel {totalQuestions}
+                                نتيجتك: {score} من {totalQuestions}
                             </motion.p>
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.8 }}
-                                className="text-lg md:text-xl text-center"
+                                className="text-lg md:text-xl text-center arabic-text"
                             >
-                                {Number(score) === totalQuestions && <p>Mabrouk! Inti fan kbir mta3 Choufli Hal!</p>}
-                                {Number(score) >= totalQuestions / 2 && Number(score) < totalQuestions && <p>Mech khayeb! Amma lazem tchuf el série marra okhra!</p>}
-                                {Number(score) < totalQuestions / 2 && <p>Yèzzi mel ghoch w arja3 chuf el série!</p>}
+                                {Number(score) === totalQuestions && <p>مبروك! إنت فان كبير متاع شوفلي حل!</p>}
+                                {Number(score) >= totalQuestions / 2 && Number(score) < totalQuestions && <p>مش خايب! أما لازم تشوف السلسلة مرة أخرى!</p>}
+                                {Number(score) < totalQuestions / 2 && <p>يزي من الغش و ارجع شوف السلسلة!</p>}
                             </motion.div>
                         </CardContent>
                         <CardFooter className="flex justify-center">
                             <Link href="/" passHref style={{ width: '100%', maxWidth: '250px' }}>
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6">A3awed el Quiz</Button>
+                                    <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6 arabic-text">أعاود الكويز</Button>
                                 </motion.div>
                             </Link>
                         </CardFooter>
