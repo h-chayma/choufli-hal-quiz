@@ -1,13 +1,14 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useSearchParams } from "next/navigation"
+import Image from "next/image"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Progress } from "@/components/ui/progress"
-import { motion, AnimatePresence } from "framer-motion"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 const questions = [
     {
@@ -22,43 +23,40 @@ const questions = [
         correctAnswer: 1,
         image: "/placeholder.svg?height=300&width=500&text=Choufli+Hal+2005",
     },
-];
+]
 
 export default function Quiz() {
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-    const [score, setScore] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(15);
-    const router = useRouter();
+    const [currentQuestion, setCurrentQuestion] = useState(0)
+    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+    const [score, setScore] = useState(0)
+    const [timeLeft, setTimeLeft] = useState(15)
+    const router = useRouter()
 
     useEffect(() => {
         if (timeLeft > 0) {
-            const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-            return () => clearTimeout(timer);
+            const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000)
+            return () => clearTimeout(timer)
         } else {
-            handleAnswer();
+            handleAnswer()
         }
-    }, [timeLeft]);
+    }, [timeLeft])
 
     const handleAnswer = () => {
         if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-            setScore(score + 1);
+            setScore(score + 1)
         }
 
         if (currentQuestion + 1 < questions.length) {
-            setCurrentQuestion(currentQuestion + 1);
-            setSelectedAnswer(null);
-            setTimeLeft(15);
+            setCurrentQuestion(currentQuestion + 1)
+            setSelectedAnswer(null)
+            setTimeLeft(15)
         } else {
-            router.push(
-                `/results?score=${score + (selectedAnswer === questions[currentQuestion].correctAnswer ? 1 : 0)
-                }`
-            );
+            router.push(`/results?score=${score + (selectedAnswer === questions[currentQuestion].correctAnswer ? 1 : 0)}`)
         }
-    };
+    }
 
     return (
-        <>
+        <div className="flex items-center justify-center min-h-screen">
             <motion.div
                 key={currentQuestion}
                 initial={{ rotateY: 90, opacity: 0 }}
@@ -67,11 +65,8 @@ export default function Quiz() {
                 transition={{ duration: 0.5 }}
                 className="w-full max-w-md px-4"
             >
-                <Card>
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                    >
+                <Card className="overflow-hidden">
+                    <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
                         <Image
                             src={questions[currentQuestion].image}
                             width={500}
@@ -94,9 +89,7 @@ export default function Quiz() {
                         <p className="text-center mt-2">الوقت المتبقي: {timeLeft} ثانية</p>
                     </CardHeader>
                     <CardContent>
-                        <p className="mb-4 text-center text-lg font-semibold">
-                            {questions[currentQuestion].question}
-                        </p>
+                        <p className="mb-4 text-center text-lg font-semibold">{questions[currentQuestion].question}</p>
                         <RadioGroup onValueChange={(value) => setSelectedAnswer(parseInt(value))}>
                             {questions[currentQuestion].options.map((option, index) => (
                                 <motion.div
@@ -109,10 +102,7 @@ export default function Quiz() {
                                         <RadioGroupItem value={index.toString()} id={`option-${index}`} />
                                         <label
                                             htmlFor={`option-${index}`}
-                                            className={`${selectedAnswer === index
-                                                ? "font-bold underline text-accent"
-                                                : "font-normal"
-                                                }`}
+                                            className={`${selectedAnswer === index ? "font-bold underline text-accent" : "font-normal"}`}
                                         >
                                             {option}
                                         </label>
@@ -122,16 +112,12 @@ export default function Quiz() {
                         </RadioGroup>
                     </CardContent>
                     <CardFooter>
-                        <Button
-                            disabled={selectedAnswer === null}
-                            onClick={handleAnswer}
-                            className="w-full"
-                        >
+                        <Button disabled={selectedAnswer === null} onClick={handleAnswer} className="w-full">
                             تأكيد
                         </Button>
                     </CardFooter>
                 </Card>
             </motion.div>
-        </>
-    );
+        </div>
+    )
 }

@@ -1,22 +1,30 @@
-import type { Metadata } from "next";
-import "../style/globals.css";
-import { AppWrapper } from "@/components/layout/AppWrapper";
+import "@/styles/globals.css"
+import { Metadata } from "next"
+
+import { cn } from "@/lib/utils"
+import { AppWrapper } from "@/components/layout/AppWrapper"
 
 export const metadata: Metadata = {
   title: "كويز شوفلي حل",
   description: "ألعب كويز شوفلي حل",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ar">
-      <body>
-        <AppWrapper>{children}</AppWrapper>
-      </body>
-    </html>
-  );
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            "min-h-screen bg-background antialiased",)}
+        >
+            <AppWrapper>{children}</AppWrapper>
+        </body>
+      </html>
+    </>
+  )
 }
