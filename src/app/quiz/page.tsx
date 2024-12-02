@@ -80,7 +80,7 @@ export default function Quiz() {
     }
 
     return (
-        <div className="h-screen bg-gradient-to-r from-yellow-200 to-yellow-500 overflow-hidden relative p-4">
+        <>
             {backgroundQuotes.map((quote, index) => (
                 <motion.div
                     key={index}
@@ -149,6 +149,6 @@ export default function Quiz() {
                     </motion.div>
                 </AnimatePresence>
             </div>
-        </div>
-    )
+        </>
+    );
 }

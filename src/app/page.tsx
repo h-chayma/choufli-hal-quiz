@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -18,7 +18,7 @@ const bounceAnimation = {
 
 export default function Home() {
   return (
-    <div className="h-screen overflow-hidden relative p-4">
+    <>
       <motion.div
         className="absolute top-10 left-10 hidden md:block"
         animate={{ rotate: 360 }}
@@ -82,6 +82,6 @@ export default function Home() {
           <Settings className="h-4 w-4" />
         </Button>
       </Link>
-    </div>
-  )
+    </>
+  );
 }

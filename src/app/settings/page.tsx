@@ -14,7 +14,7 @@ export default function Settings() {
     const [volume, setVolume] = useState(50)
 
     return (
-        <div className="h-screen bg-gradient-to-r overflow-hidden relative p-4">
+        <>
             <div className="flex justify-center items-center h-full">
                 <Card className="w-full max-w-md">
                     <CardHeader>
@@ -47,6 +47,6 @@ export default function Settings() {
                     </CardContent>
                 </Card>
             </div>
-        </div>
-    )
+        </>
+    );
 }

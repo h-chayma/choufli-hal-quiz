@@ -15,7 +15,7 @@ export default function Results() {
     const totalQuestions = 2
 
     return (
-        <div className="h-screen bg-gradient-to-r from-yellow-200 to-yellow-500 overflow-hidden relative p-4">
+        <>
             {celebrationEmojis.map((emoji, index) => (
                 <motion.div
                     key={index}
@@ -87,6 +87,6 @@ export default function Results() {
                     </Card>
                 </motion.div>
             </div>
-        </div>
-    )
+        </>
+    );
 }

@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-gradient-to-r from-primary to-secondary">
+    <html lang="ar">
+      <body className="h-screen bg-gradient-to-r from-primary to-secondary overflow-hidden relative p-4">
         {children}
       </body>
     </html>
