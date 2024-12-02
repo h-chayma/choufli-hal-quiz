@@ -84,7 +84,7 @@ export default function Quiz() {
             {backgroundQuotes.map((quote, index) => (
                 <motion.div
                     key={index}
-                    className="absolute text-xl md:text-2xl font-bold text-yellow-800 opacity-20 hidden sm:block arabic-text"
+                    className="absolute text-xl md:text-2xl font-bold text-yellow-800 opacity-20 hidden sm:block"
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 0.2, x: 0 }}
                     transition={{ delay: index * 0.5, duration: 0.5 }}
@@ -113,15 +113,15 @@ export default function Quiz() {
                             </motion.div>
                             <CardHeader>
                                 <CardTitle>
-                                    <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 0.5 }} className="text-xl md:text-2xl text-center arabic-text">
+                                    <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 0.5 }} className="text-xl md:text-2xl text-center">
                                         سؤال {currentQuestion + 1} / {questions.length}
                                     </motion.div>
                                 </CardTitle>
                                 <Progress value={(timeLeft / 15) * 100} className="w-full" />
-                                <p className="text-center mt-2 arabic-text">الوقت المتبقي: {timeLeft} ثانية</p>
+                                <p className="text-center mt-2">الوقت المتبقي: {timeLeft} ثانية</p>
                             </CardHeader>
                             <CardContent>
-                                <p className="mb-4 text-center text-lg font-semibold arabic-text">{questions[currentQuestion].question}</p>
+                                <p className="mb-4 text-center text-lg font-semibold">{questions[currentQuestion].question}</p>
                                 <RadioGroup onValueChange={(value) => setSelectedAnswer(parseInt(value))}>
                                     {questions[currentQuestion].options.map((option, index) => (
                                         <motion.div
@@ -132,7 +132,7 @@ export default function Quiz() {
                                         >
                                             <div className="flex items-center space-x-2 my-3">
                                                 <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                                                <Label htmlFor={`option-${index}`} className="text-base md:text-lg arabic-text">{option}</Label>
+                                                <Label htmlFor={`option-${index}`} className="text-base md:text-lg">{option}</Label>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -140,7 +140,7 @@ export default function Quiz() {
                             </CardContent>
                             <CardFooter>
                                 <motion.div className="w-full" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Button onClick={handleAnswer} disabled={selectedAnswer === null} className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6 arabic-text">
+                                    <Button onClick={handleAnswer} disabled={selectedAnswer === null} className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6">
                                         {currentQuestion + 1 === questions.length ? 'كمل' : 'السؤال اللي بعدو'}
                                     </Button>
                                 </motion.div>

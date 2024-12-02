@@ -52,7 +52,7 @@ export default function Results() {
                         </motion.div>
                         <CardHeader>
                             <CardTitle>
-                                <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }} className="text-2xl md:text-3xl text-center arabic-text">
+                                <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }} className="text-2xl md:text-3xl text-center">
                                     نتائج الكويز
                                 </motion.div>
                             </CardTitle>
@@ -62,7 +62,7 @@ export default function Results() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className="text-xl md:text-2xl text-center font-bold mb-4 arabic-text"
+                                className="text-xl md:text-2xl text-center font-bold mb-4"
                             >
                                 نتيجتك: {score} من {totalQuestions}
                             </motion.p>
@@ -70,7 +70,7 @@ export default function Results() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.8 }}
-                                className="text-lg md:text-xl text-center arabic-text"
+                                className="text-lg md:text-xl text-center"
                             >
                                 {Number(score) === totalQuestions && <p>مبروك! إنت فان كبير متاع شوفلي حل!</p>}
                                 {Number(score) >= totalQuestions / 2 && Number(score) < totalQuestions && <p>مش خايب! أما لازم تشوف السلسلة مرة أخرى!</p>}
@@ -80,7 +80,7 @@ export default function Results() {
                         <CardFooter className="flex justify-center">
                             <Link href="/" passHref style={{ width: '100%', maxWidth: '250px' }}>
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6 arabic-text">أعاود الكويز</Button>
+                                    <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6">أعاود الكويز</Button>
                                 </motion.div>
                             </Link>
                         </CardFooter>

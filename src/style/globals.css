@@ -4,12 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-noto-kufi-arabic: 'Noto Kufi Arabic', sans-serif;
-}
-
 body {
-  font-family: var(--font-noto-kufi-arabic);
+  font-family: 'Noto Kufi Arabic', sans-serif;
 }
 
 @layer base {
@@ -20,13 +16,13 @@ body {
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
+    --primary: 218 44.7% 51.8%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
+    --secondary: 219 40.1% 32.7%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
+    --accent: 37 66.3% 47.6%;
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -89,10 +85,5 @@ body {
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--border));
     border-radius: 5px;
-  }
-
-  .arabic-text {
-    font-family: var(--font-noto-kufi-arabic);
-    direction: rtl;
   }
 }

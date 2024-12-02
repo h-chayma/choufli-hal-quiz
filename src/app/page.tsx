@@ -18,23 +18,23 @@ const bounceAnimation = {
 
 export default function Home() {
   return (
-    <div className="h-screen bg-gradient-to-r from-yellow-200 to-yellow-500 overflow-hidden relative p-4">
+    <div className="h-screen overflow-hidden relative p-4">
       <motion.div
         className="absolute top-10 left-10 hidden md:block"
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       >
-        <Image src="/placeholder.svg?text=Sbou3i" width={100} height={100} alt="Sbou3i sticker" />
+        <Image src="/images/sticker-1.svg" width={100} height={100} alt="Sbou3i sticker" />
       </motion.div>
       <motion.div
         className="absolute bottom-10 right-10 hidden md:block"
         animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <Image src="/placeholder.svg?text=Njoum+Ellil" width={120} height={80} alt="Njoum Ellil sticker" />
+        <Image src="/images/sticker-2.svg" width={120} height={80} alt="Njoum Ellil sticker" />
       </motion.div>
       <motion.div
-        className="absolute top-1/2 left-5 transform -translate-y-1/2 text-2xl md:text-4xl font-bold text-yellow-800 rotate-[-20deg] hidden sm:block arabic-text"
+        className="absolute top-1/2 left-5 transform -translate-y-1/2 text-2xl md:text-4xl font-bold text-yellow-500 rotate-[-20deg] hidden sm:block"
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
@@ -49,27 +49,27 @@ export default function Home() {
         >
           <Card className="w-full max-w-md overflow-hidden">
             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
-              <Image src="/placeholder.svg?height=300&width=500&text=Choufli+Hal" width={500} height={300} alt="Choufli Hal" className="w-full" />
+              <Image src="/images/home-main.svg" width={500} height={300} alt="Choufli Hal" className="w-full" />
             </motion.div>
             <CardHeader>
               <CardTitle>
-                <motion.div animate={bounceAnimation} className="text-2xl md:text-3xl text-center arabic-text">
+                <motion.div animate={bounceAnimation} className="text-2xl md:text-3xl text-center">
                   كويز شوفلي حل
                 </motion.div>
               </CardTitle>
-              <CardDescription className="text-center text-base md:text-lg arabic-text">
+              <CardDescription className="text-center text-base md:text-lg">
                 يالله نراو شنوة تعرف على السيري متاعنا المحبوبة!
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-center text-sm md:text-base arabic-text">
+              <p className="text-center text-sm md:text-base">
                 مستعد باش تتحدى روحك في أسئلة على الشخصيات و المواقف اللي ما تنساهمش؟
               </p>
             </CardContent>
             <CardFooter className="flex justify-center">
               <Link href="/quiz" passHref style={{ width: '100%', maxWidth: '250px' }}>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6 arabic-text">ابدأ الكويز</Button>
+                  <Button className="w-full bg-accent hover:bg-yellow-700 text-lg py-6">ابدأ الكويز</Button>
                 </motion.div>
               </Link>
             </CardFooter>
