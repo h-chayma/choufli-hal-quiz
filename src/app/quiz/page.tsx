@@ -23,7 +23,7 @@ const questions = [
         correctAnswer: 1,
         image: "/placeholder.svg?height=300&width=500&text=Choufli+Hal+2005"
     },
-];
+]
 
 const backgroundQuotes = [
     "شوف شوف!",
@@ -39,23 +39,6 @@ export default function Quiz() {
     const [timeLeft, setTimeLeft] = useState(15)
     const router = useRouter()
 
-    useEffect(() => {
-        const audio = new Audio('/music/generique.mp3');
-        const playAudio = () => {
-            audio.loop = true;
-            audio.play().catch((error) => {
-                console.error("Audio playback failed:", error);
-            });
-        };
-    
-        document.addEventListener('click', playAudio);
-    
-        return () => {
-            audio.pause();
-            document.removeEventListener('click', playAudio);
-        };
-    }, []);
-    
     useEffect(() => {
         if (timeLeft > 0) {
             const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000)
@@ -80,75 +63,77 @@ export default function Quiz() {
     }
 
     return (
-        <>
-            {backgroundQuotes.map((quote, index) => (
-                <motion.div
-                    key={index}
-                    className="absolute text-xl md:text-2xl font-bold text-yellow-800 opacity-20 hidden sm:block"
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={{ opacity: 0.2, x: 0 }}
-                    transition={{ delay: index * 0.5, duration: 0.5 }}
-                    style={{
-                        top: `${25 * (index + 1)}%`,
-                        left: `${Math.random() * 80}%`,
-                        transform: `rotate(${Math.random() * 20 - 10}deg)`,
-                    }}
-                >
-                    {quote}
-                </motion.div>
-            ))}
-
-            <div className="flex justify-center items-center h-full">
-                <AnimatePresence mode="wait">
+        <div className="flex flex-col items-center justify-center min-h-screen">
+            {/* Fixed background quotes */}
+            <div className="fixed inset-0 pointer-events-none">
+                {backgroundQuotes.map((quote, index) => (
                     <motion.div
-                        key={currentQuestion}
-                        initial={{ rotateY: 90, opacity: 0 }}
-                        animate={{ rotateY: 0, opacity: 1 }}
-                        exit={{ rotateY: -90, opacity: 0 }}
-                        transition={{ duration: 0.5 }}
+                        key={index}
+                        className="absolute bg-white bg-opacity-20 rounded-lg p-2 text-xl md:text-2xl font-bold text-yellow-500"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: index * 0.5 }}
+                        style={{
+                            top: `${25 * (index + 1)}%`,
+                            left: `${Math.random() * 60 + 20}%`,
+                            transform: `rotate(${Math.random() * 20 - 10}deg)`,
+                        }}
                     >
-                        <Card className="w-full max-w-md overflow-hidden">
-                            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
-                                <Image src={questions[currentQuestion].image} width={500} height={300} alt={`سؤال ${currentQuestion + 1}`} className="w-full" />
-                            </motion.div>
-                            <CardHeader>
-                                <CardTitle>
-                                    <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 0.5 }} className="text-xl md:text-2xl text-center">
-                                        سؤال {currentQuestion + 1} / {questions.length}
-                                    </motion.div>
-                                </CardTitle>
-                                <Progress value={(timeLeft / 15) * 100} className="w-full" />
-                                <p className="text-center mt-2">الوقت المتبقي: {timeLeft} ثانية</p>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="mb-4 text-center text-lg font-semibold">{questions[currentQuestion].question}</p>
-                                <RadioGroup onValueChange={(value) => setSelectedAnswer(parseInt(value))}>
-                                    {questions[currentQuestion].options.map((option, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ x: -50, opacity: 0 }}
-                                            animate={{ x: 0, opacity: 1 }}
-                                            transition={{ delay: index * 0.1 }}
-                                        >
-                                            <div className="flex items-center space-x-2 my-3">
-                                                <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                                                <Label htmlFor={`option-${index}`} className="text-base md:text-lg">{option}</Label>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </RadioGroup>
-                            </CardContent>
-                            <CardFooter>
-                                <motion.div className="w-full" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Button onClick={handleAnswer} disabled={selectedAnswer === null} className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6">
-                                        {currentQuestion + 1 === questions.length ? 'كمل' : 'السؤال اللي بعدو'}
-                                    </Button>
-                                </motion.div>
-                            </CardFooter>
-                        </Card>
+                        {quote}
                     </motion.div>
-                </AnimatePresence>
+                ))}
             </div>
-        </>
-    );
+
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={currentQuestion}
+                    initial={{ rotateY: 90, opacity: 0 }}
+                    animate={{ rotateY: 0, opacity: 1 }}
+                    exit={{ rotateY: -90, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full max-w-md px-4"
+                >
+                    <Card className="overflow-hidden">
+                        <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
+                            <Image src={questions[currentQuestion].image} width={500} height={300} alt={`سؤال ${currentQuestion + 1}`} className="w-full" />
+                        </motion.div>
+                        <CardHeader>
+                            <CardTitle>
+                                <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 0.5 }} className="text-xl md:text-2xl text-center">
+                                    سؤال {currentQuestion + 1} / {questions.length}
+                                </motion.div>
+                            </CardTitle>
+                            <Progress value={(timeLeft / 15) * 100} className="w-full" />
+                            <p className="text-center mt-2">الوقت المتبقي: {timeLeft} ثانية</p>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="mb-4 text-center text-lg font-semibold">{questions[currentQuestion].question}</p>
+                            <RadioGroup onValueChange={(value) => setSelectedAnswer(parseInt(value))}>
+                                {questions[currentQuestion].options.map((option, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ x: -50, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        transition={{ delay: index * 0.1 }}
+                                    >
+                                        <div className="flex items-center space-x-2 my-3">
+                                            <RadioGroupItem value={index.toString()} id={`option-${index}`} />
+                                            <Label htmlFor={`option-${index}`} className="text-base md:text-lg">{option}</Label>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </RadioGroup>
+                        </CardContent>
+                        <CardFooter>
+                            <motion.div className="w-full" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <Button onClick={handleAnswer} disabled={selectedAnswer === null} className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6">
+                                    {currentQuestion + 1 === questions.length ? 'كمل' : 'السؤال اللي بعدو'}
+                                </Button>
+                            </motion.div>
+                        </CardFooter>
+                    </Card>
+                </motion.div>
+            </AnimatePresence>
+        </div>
+    )
 }

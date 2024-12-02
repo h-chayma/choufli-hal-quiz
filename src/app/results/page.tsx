@@ -12,10 +12,11 @@ const celebrationEmojis = ["🎉", "🎊", "🥳", "👏", "🙌"]
 export default function Results() {
     const searchParams = useSearchParams()
     const score = searchParams.get('score')
-    const totalQuestions = 2
+    const totalQuestions = 2 // Update this when you add more questions
 
     return (
-        <>
+        <div className="flex flex-col items-center justify-center min-h-screen">
+            {/* Celebration emojis */}
             {celebrationEmojis.map((emoji, index) => (
                 <motion.div
                     key={index}
@@ -32,6 +33,7 @@ export default function Results() {
                 </motion.div>
             ))}
 
+            {/* Character sticker */}
             <motion.div
                 className="absolute bottom-10 right-10 hidden md:block"
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -40,13 +42,13 @@ export default function Results() {
                 <Image src="/placeholder.svg?text=Sbou3i+Thumbs+Up" width={150} height={150} alt="Sbou3i Thumbs Up" />
             </motion.div>
 
-            <div className="flex justify-center items-center h-full">
+            <div className="w-full max-w-md px-4">
                 <motion.div
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 >
-                    <Card className="w-full max-w-md overflow-hidden">
+                    <Card className="overflow-hidden">
                         <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
                             <Image src="/placeholder.svg?height=300&width=500&text=Mabrouk!" width={500} height={300} alt="نتائج الكويز" className="w-full" />
                         </motion.div>
@@ -79,7 +81,7 @@ export default function Results() {
                         </CardContent>
                         <CardFooter className="flex justify-center">
                             <Link href="/" passHref style={{ width: '100%', maxWidth: '250px' }}>
-                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full">
                                     <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-lg py-6">أعاود الكويز</Button>
                                 </motion.div>
                             </Link>
@@ -87,6 +89,6 @@ export default function Results() {
                     </Card>
                 </motion.div>
             </div>
-        </>
-    );
+        </div>
+    )
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../style/globals.css";
+import { AppWrapper } from "@/components/layout/AppWrapper";
 
 export const metadata: Metadata = {
   title: "كويز شوفلي حل",
@@ -13,8 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar">
-      <body className="h-screen bg-gradient-to-r from-primary to-secondary overflow-hidden relative p-4">
-        {children}
+      <body>
+        <AppWrapper>{children}</AppWrapper>
       </body>
     </html>
   );
