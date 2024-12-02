@@ -32,7 +32,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   }, [isPlaying])
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-primary to-secondary overflow-hidden relative p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-primary to-secondary p-4">
       {children}
       {pathname !== '/settings' && (
         <Link href="/settings" className="fixed top-4 right-4 z-50">

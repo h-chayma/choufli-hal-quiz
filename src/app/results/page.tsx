@@ -7,33 +7,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { motion } from "framer-motion"
 
-const celebrationEmojis = ["🎉", "🎊", "🥳", "👏", "🙌"]
-
 export default function Results() {
     const searchParams = useSearchParams()
     const score = searchParams.get('score')
-    const totalQuestions = 2 // Update this when you add more questions
+    const totalQuestions = 2
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
-            {/* Celebration emojis */}
-            {celebrationEmojis.map((emoji, index) => (
-                <motion.div
-                    key={index}
-                    className="absolute text-4xl hidden sm:block"
-                    initial={{ y: -50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: index * 0.2, duration: 0.5 }}
-                    style={{
-                        top: `${Math.random() * 80}%`,
-                        left: `${Math.random() * 80}%`,
-                    }}
-                >
-                    {emoji}
-                </motion.div>
-            ))}
-
-            {/* Character sticker */}
+        <>
             <motion.div
                 className="absolute bottom-10 right-10 hidden md:block"
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -89,6 +69,6 @@ export default function Results() {
                     </Card>
                 </motion.div>
             </div>
-        </div>
+        </>
     )
 }

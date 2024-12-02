@@ -14,7 +14,7 @@ export default function Settings() {
     const [volume, setVolume] = useState(50)
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <>
             <div className="w-full max-w-md px-4">
                 <Card>
                     <CardHeader>
@@ -49,6 +49,6 @@ export default function Settings() {
                     </CardContent>
                 </Card>
             </div>
-        </div>
+        </>
     )
 }
