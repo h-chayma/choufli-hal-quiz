@@ -68,7 +68,7 @@ export default function Home() {
                 animate={bounceAnimation}
                 className="text-3xl md:text-4xl text-center font-bold text-accent drop-shadow-lg"
               >
-                كويز شوفلي حل
+                شوفلي كويز
               </motion.div>
             </CardTitle>
             <CardDescription className="text-center text-white text-lg mt-2">

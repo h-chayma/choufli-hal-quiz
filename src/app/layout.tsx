@@ -4,8 +4,8 @@ import { AppWrapper } from "@/components/layout/AppWrapper";
 import { QuizProvider } from "@/context/QuizContext";
 
 export const metadata: Metadata = {
-  title: "كويز شوفلي حل",
-  description: "ألعب كويز شوفلي حل",
+  title: "شوفلي كويز",
+  description: "كويز للفان متع شوفلي حل",
 };
 
 interface RootLayoutProps {
