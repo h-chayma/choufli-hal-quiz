@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -11,9 +12,14 @@ import { questions } from "@/data/questions";
 
 export default function Results() {
     const searchParams = useSearchParams();
-    const score = searchParams.get('score');
+    const [score, setScore] = useState<string | null>(null);
+
+    useEffect(() => {
+        setScore(searchParams.get('score'));
+    }, [searchParams]);
+
     const totalQuestions = questions.length;
-    const scorePercentage = (Number(score) / totalQuestions) * 100;
+    const scorePercentage = score ? (Number(score) / totalQuestions) * 100 : 0;
 
     return (
         <>
@@ -105,5 +111,5 @@ export default function Results() {
                 </Card>
             </motion.div>
         </>
-    )
+    );
 }
