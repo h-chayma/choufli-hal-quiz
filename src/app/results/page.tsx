@@ -1,24 +1,15 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Confetti } from "@/components/Confetti";
-import { questions } from "@/data/questions";
+import { useQuiz } from "@/context/QuizContext";
 
 export default function Results() {
-    const searchParams = useSearchParams();
-    const [score, setScore] = useState<string | null>(null);
-
-    useEffect(() => {
-        setScore(searchParams.get('score'));
-    }, [searchParams]);
-
-    const totalQuestions = questions.length;
+    const { score, totalQuestions } = useQuiz();
     const scorePercentage = score ? (Number(score) / totalQuestions) * 100 : 0;
 
     return (

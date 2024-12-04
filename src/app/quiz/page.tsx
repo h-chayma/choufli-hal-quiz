@@ -9,11 +9,12 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { questions } from "@/data/questions";
+import { useQuiz } from "@/context/QuizContext";
 
 export default function Quiz() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-    const [score, setScore] = useState(0);
+    const { score, setScore } = useQuiz();
     const [timeLeft, setTimeLeft] = useState(20);
     const router = useRouter();
 
@@ -36,7 +37,7 @@ export default function Quiz() {
             setSelectedAnswer(null);
             setTimeLeft(20);
         } else {
-            router.push(`/results?score=${score + (selectedAnswer === questions[currentQuestion].correctAnswer ? 1 : 0)}`);
+            router.push("/results");
         }
     };
 
