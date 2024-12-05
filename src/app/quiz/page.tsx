@@ -84,8 +84,8 @@ export default function Quiz() {
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <div className="flex items-center space-x-2 my-3 bg-white/10 rounded-lg p-3 hover:bg-white/20 transition-colors">
-                                        <RadioGroupItem value={index.toString()} id={`option-${index}`} className="border-white" />
+                                    <div dir="rtl" className="flex items-center space-x-2 bg-white/10 rounded-lg p-3 hover:bg-white/20 transition-colors">
+                                        <RadioGroupItem value={index.toString()} id={`option-${index}`} className="border-white ml-2" />
                                         <label
                                             htmlFor={`option-${index}`}
                                             className={`${selectedAnswer === index ? "font-bold text-accent" : "font-normal text-white"
