@@ -10,8 +10,18 @@ import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { questions } from "@/data/questions";
 import { useQuiz } from "@/context/QuizContext";
+import { question } from "@/types/question";
+
+const shuffleArray = (array: question[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+};
 
 export default function Quiz() {
+    const [shuffledQuestions, setShuffledQuestions] = useState(shuffleArray([...questions]));
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const { score, setScore } = useQuiz();
@@ -28,11 +38,11 @@ export default function Quiz() {
     }, [timeLeft]);
 
     const handleAnswer = () => {
-        if (selectedAnswer === questions[currentQuestion].correctAnswer) {
+        if (selectedAnswer === shuffledQuestions[currentQuestion].correctAnswer) {
             setScore(score + 1);
         }
 
-        if (currentQuestion + 1 < questions.length) {
+        if (currentQuestion + 1 < shuffledQuestions.length) {
             setCurrentQuestion(currentQuestion + 1);
             setSelectedAnswer(null);
             setTimeLeft(20);
@@ -54,7 +64,7 @@ export default function Quiz() {
                 <Card className="overflow-hidden bg-white/10 backdrop-blur-md shadow-xl">
                     <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
                         <Image
-                            src={questions[currentQuestion].image}
+                            src={shuffledQuestions[currentQuestion].image}
                             width={500}
                             height={300}
                             alt={`Question ${currentQuestion + 1}`}
@@ -68,16 +78,16 @@ export default function Quiz() {
                                 transition={{ duration: 0.5 }}
                                 className="text-2xl md:text-3xl text-center font-bold text-accent drop-shadow-lg mb-4"
                             >
-                                سؤال {currentQuestion + 1} / {questions.length}
+                                سؤال {currentQuestion + 1} / {shuffledQuestions.length}
                             </motion.div>
                         </CardTitle>
                         <Progress value={(timeLeft / 20) * 100} className="w-full" />
                         <p className="text-center mt-2 text-white">الوقت المتبقي: {timeLeft} ثانية</p>
                     </CardHeader>
                     <CardContent>
-                        <p className="mb-4 text-center text-xl font-semibold text-white">{questions[currentQuestion].question}</p>
+                        <p className="mb-4 text-center text-xl font-semibold text-white">{shuffledQuestions[currentQuestion].question}</p>
                         <RadioGroup onValueChange={(value) => setSelectedAnswer(parseInt(value))}>
-                            {questions[currentQuestion].options.map((option, index) => (
+                            {shuffledQuestions[currentQuestion].options.map((option, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ x: -50, opacity: 0 }}
