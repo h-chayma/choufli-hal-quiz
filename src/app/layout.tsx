@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { AppWrapper } from "@/components/layout/AppWrapper";
 import { QuizProvider } from "@/context/QuizContext";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "شوفلي كويز",
