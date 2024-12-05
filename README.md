@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Choufli Hal Quiz 🎭
 
-First, run the development server:
+Experience the laughter and nostalgia of Tunisia's beloved comedy series, *Choufli Hal*, through this interactive and engaging quiz app! Test how well you know the series and challenge your friends to join the fun.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌟 Features
+- **Engaging Quizzes**: Dive into questions inspired by *Choufli Hal* episodes, characters, and iconic moments.  
+- **Dynamic UI**: Enjoy a smooth and modern user experience powered by Next.js and ShadCN components.  
+- **Responsive Design**: Play on any device—mobile, tablet, or desktop.  
+- **Fast & Secure**: Deployed on Vercel for lightning-speed performance and reliability.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🖥️ Demo  
+Check out the live version here: [Choufli Hal Quiz](https://choufli-quiz.vercel.app)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📸 Screenshots  
+![Home Page](./public/images/screenshots/home-page.png)  
+*Explore the sleek, Tunisian-themed homepage.*  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Quiz in Action](./public/images/screenshots/quiz-page.png)  
+*Answer fun questions and unlock your inner *Choufli Hal* superfan.*  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Technologies Used  
+- **Framework**: [Next.js](https://nextjs.org/) with app routing  
+- **UI Library**: ShadCN  
+- **Deployment**: [Vercel](https://vercel.com/)  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing  
+Feel free to fork the repository and submit pull requests for improvements or new features!
+
+---
+
+## 📝 License  
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+## 💡 Inspiration  
+*Choufli Hal Quiz* is a tribute to the timeless humor of Tunisia's most iconic sitcom. It’s built to share the joy and memories of this masterpiece with fans everywhere!
+
+---
+
+### 👩‍💻 Developed by: [Chayma Farhat](https://chaymafarhat.vercel.app)
