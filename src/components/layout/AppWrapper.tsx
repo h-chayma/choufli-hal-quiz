@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Settings, VolumeX, Volume2, Home } from 'lucide-react';
+import { Settings, VolumeX, Volume2, Home, Github } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -68,6 +69,13 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
                     <Button variant="outline" size="icon" onClick={() => setShowSettings(!showSettings)} className="text-white bg-white/20 backdrop-blur-sm">
                         <Settings className="h-4 w-4" />
                     </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                    <Link href="https://github.com/h-chayma/choufli-hal-quiz" passHref>
+                        <Button variant="outline" size="icon" className="text-white bg-white/20 backdrop-blur-sm">
+                            <Github className="h-4 w-4" />
+                        </Button>
+                    </Link>
                 </motion.div>
             </div>
             <AnimatePresence>
