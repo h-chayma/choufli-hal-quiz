@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Confetti } from "@/components/Confetti";
 import { useQuiz } from "@/context/QuizContext";
 import { Share2, Trophy, BookOpen, Repeat, XCircle, CheckCircle2 } from 'lucide-react';
@@ -115,19 +115,43 @@ export default function Results() {
                                 </div>
                             </div>
                         </motion.div>
+                        <AnimatePresence>
+                            {isAnimationComplete && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ delay: 0.8 }}
+                                    className="text-xl md:text-2xl text-center text-white"
+                                >
+                                    <p>{getFeedback()}</p>
+                                    <motion.div
+                                        className="flex justify-center mt-4 space-x-4"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 1.2 }}
+                                    >
+                                        {scorePercentage === 100 && (
+                                            <Trophy className="text-accent w-8 h-8" />
+                                        )}
+                                        <BookOpen className="text-primary w-8 h-8" />
+                                    </motion.div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </CardContent>
                     <CardFooter className="flex flex-col items-center space-y-4">
                         <div className="flex flex-wrap justify-center gap-4">
                             <Link href="/" passHref>
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Button className="bg-accent hover:bg-yellow-500 text-black text-base sm:text-xl px-6 py-3 sm:py-6 rounded-full shadow-lg">
+                                    <Button onClick={resetQuiz} className="bg-accent hover:bg-yellow-500 text-black text-base sm:text-xl px-6 py-3 sm:py-6 rounded-full shadow-lg">
                                         <Repeat className="w-5 sm:w-6 h-5 sm:h-6 mr-2" />
                                         عاود الكويز
                                     </Button>
                                 </motion.div>
                             </Link>
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Button className="bg-blue-500 hover:bg-blue-600 text-white text-base sm:text-xl px-6 py-3 sm:py-6 rounded-full shadow-lg">
+                                <Button onClick={shareResult} className="bg-blue-500 hover:bg-blue-600 text-white text-base sm:text-xl px-6 py-3 sm:py-6 rounded-full shadow-lg">
                                     <Share2 className="w-5 sm:w-6 h-5 sm:h-6 mr-2" />
                                     شارك
                                 </Button>
