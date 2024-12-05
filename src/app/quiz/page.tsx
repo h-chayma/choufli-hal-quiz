@@ -24,7 +24,7 @@ export default function Quiz() {
     const [shuffledQuestions, setShuffledQuestions] = useState(shuffleArray([...questions]));
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-    const { score, setScore } = useQuiz();
+    const { score, setScore, addWrongQuestion } = useQuiz();
     const [timeLeft, setTimeLeft] = useState(20);
     const router = useRouter();
 
@@ -37,9 +37,24 @@ export default function Quiz() {
         }
     }, [timeLeft]);
 
+    const handleCorrectAnswer = () => {
+        setScore(score + 1);
+    };
+
+    const handleWrongAnswer = () => {
+        if (selectedAnswer === null) return;
+        addWrongQuestion({
+            question: shuffledQuestions[currentQuestion].question,
+            userAnswer: shuffledQuestions[currentQuestion].options[selectedAnswer],
+            correctAnswer: shuffledQuestions[currentQuestion].options[shuffledQuestions[currentQuestion].correctAnswer],
+        });
+    };
+
     const handleAnswer = () => {
         if (selectedAnswer === shuffledQuestions[currentQuestion].correctAnswer) {
-            setScore(score + 1);
+            handleCorrectAnswer();
+        } else {
+            handleWrongAnswer();
         }
 
         if (currentQuestion + 1 < shuffledQuestions.length) {
