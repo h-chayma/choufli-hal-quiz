@@ -7,6 +7,7 @@ interface QuizContextType {
     score: number;
     setScore: (score: number) => void;
     totalQuestions: number;
+    resetQuiz: () => void;
 }
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
@@ -15,8 +16,12 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [score, setScore] = useState(0);
     const totalQuestions = questions.length;
 
+    const resetQuiz = () => {
+        setScore(0);
+    };
+
     return (
-        <QuizContext.Provider value={{ score, setScore, totalQuestions }}>
+        <QuizContext.Provider value={{ score, setScore, totalQuestions, resetQuiz }}>
             {children}
         </QuizContext.Provider>
     )
