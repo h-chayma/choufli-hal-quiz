@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { AppWrapper } from "@/components/layout/AppWrapper";
 import { QuizProvider } from "@/context/QuizContext";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "شوفلي كويز",
@@ -41,10 +41,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <title>شوفلي كويز</title>
       </head>
       <body className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-secondary via-primary to-accent p-4">
-        <Analytics />
         <QuizProvider>
           <AppWrapper>{children}</AppWrapper>
         </QuizProvider>
+        <Analytics />
       </body>
     </html>
   );
