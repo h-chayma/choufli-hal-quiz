@@ -30,8 +30,14 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setWrongQuestions([]);
     };
 
-    const addWrongQuestion = (question: WrongQuestion) => {
-        setWrongQuestions((prev) => [...prev, question]);
+    const addWrongQuestion = (wrongAnswer: WrongQuestion) => {
+        setWrongQuestions((prev) => {
+            const isAnswerAlreadyRecorded = prev.some((q) => q.question === wrongAnswer.question);
+            if (!isAnswerAlreadyRecorded) {
+                return [...prev, wrongAnswer];
+            }
+            return prev;
+        })
     };
 
     return (
